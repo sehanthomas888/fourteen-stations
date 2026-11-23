@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fourteen radio stations with DJ breaks: YouTube, YouTube Music and Apple Music. Refreshed monthly.">
+<link rel="icon" href="../covers/crossfade-fm-104-7.jpg">
+</head>
+<body>
+<title>Fourteen Stations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&family=Share+Tech+Mono&display=swap">
+<style>
+/* Layout: a car-stereo tuning dial across the top, then a grid of station faceplates; each plate carries its own accent. */
+:root {
+  --bg: #e9ecf1;
+  --panel: #f7f8fa;
+  --ink: #141821;
+  --muted: #5a6172;
+  --line: #cfd4de;
+  --glow: #b4570f;
+  --mix: 62%;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Share Tech Mono", ui-monospace, "Consolas", monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1118; --panel: #141a24; --ink: #e8ebf1; --muted: #98a1b3; --line: #262f3d; --glow: #ffb25c; --mix: 100%; color-scheme: dark;
+} }
+:root[data-theme="dark"] { --bg: #0d1118; --panel: #141a24; --ink: #e8ebf1; --muted: #98a1b3; --line: #262f3d; --glow: #ffb25c; --mix: 100%; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; }
+
+header { display: grid; gap: 10px; margin-bottom: 28px; }
+.eyebrow { font: 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--glow); }
+h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size: clamp(44px, 8vw, 88px); line-height: .92; margin: 0; letter-spacing: -.01em; text-wrap: balance; text-transform: uppercase; }
+.lede { max-width: 62ch; color: var(--muted); margin: 0; font-size: 16px; }
+
+/* Tuning dial */
+.dial { position: relative; margin: 8px 0 32px; padding: 18px 0 8px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow-x: auto; }
+.dial-inner { position: relative; min-width: 720px; height: 76px; }
+.ticks { position: absolute; inset: 0 0 auto 0; height: 22px; background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 100%); background-size: calc(100% / 85) 100%; }
+.ticks::after { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg, var(--muted) 0 1px, transparent 1px 100%); background-size: calc(100% / 8.5) 100%; height: 22px; opacity: .55; }
+.mark { position: absolute; top: 26px; transform: translateX(-50%); display: grid; justify-items: center; gap: 4px; text-decoration: none; color: var(--muted); font: 12px/1 var(--mono); white-space: nowrap; padding: 2px 4px; border-radius: 4px; }
+.mark::before { content: ""; width: 2px; height: 14px; background: var(--c); border-radius: 1px; }
+.mark.low { top: 50px; }
+.mark.low::before { height: 38px; margin-top: -24px; }
+.mark:hover, .mark:focus-visible { color: var(--ink); outline: none; background: color-mix(in srgb, var(--c) 18%, transparent); }
+
+/* Station plates */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.plate { --c: #888; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 18px 16px; display: grid; gap: 12px; align-content: start; position: relative; overflow: hidden; scroll-margin-top: 16px; min-width: 0; }
+.plate::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--c); }
+.plate:target { outline: 2px solid var(--c); outline-offset: 2px; }
+.art { display: block; width: calc(100% + 36px); max-width: none; height: auto; aspect-ratio: 1; margin: -18px -18px 2px; object-fit: cover; background: var(--line); }
+.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.freq { font: 40px/1 var(--mono); color: color-mix(in srgb, var(--c) var(--mix), var(--ink)); text-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); font-variant-numeric: tabular-nums; }
+.status { font: 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 6px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.status.live { color: var(--ink); border-color: var(--c); }
+.status.live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: 0; box-shadow: 0 0 8px var(--c); }
+.name { font-family: var(--display); font-stretch: 85%; font-weight: 800; font-size: 24px; line-height: 1.1; margin: 0; text-transform: uppercase; }
+.genre { font: 12px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.hosts { margin: 0; }
+.hosts b { font-weight: 600; }
+.rot { margin: 0; color: var(--muted); font-size: 14px; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; font-size: 14px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); }
+.btn.primary { background: var(--c); border-color: var(--c); color: #0b0d12; }
+.btn:hover { filter: brightness(1.08); }
+.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.btn small { font-weight: 400; opacity: .75; }
+
+.notes { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 24px; }
+.notes h2 { font: 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin: 0 0 8px; }
+.notes p { margin: 0; max-width: 60ch; }
+@media (prefers-reduced-motion: no-preference) { .status.live::before { animation: pulse 2.4s ease-in-out infinite; } @keyframes pulse { 50% { opacity: .35; } } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">November 2026 edition · refreshed monthly</div>
+    <h1>Fourteen Stations</h1>
+    <p class="lede">Pick a frequency and press play. Every station is 24 hand-picked songs with a DJ break every four tracks, and the DJs name what you just heard and what's coming next. It's free and plays on YouTube, no account needed. On Apple Music? Use the Apple Music + DJs player.</p>
+  </header>
+
+  <nav class="dial" aria-label="Tuning dial"><div class="dial-inner" id="dial"><div class="ticks"></div></div></nav>
+
+  <main class="grid" id="grid"></main>
+
+  <section class="notes">
+    <div><h2>Where the DJs live</h2><p>The full show, with DJ breaks, plays on YouTube and YouTube Music. On Apple Music, use the Apple Music + DJs player: every DJ break is there now, songs play as 30-second previews for the moment, and full songs through your own Apple Music are coming. The plain Apple Music playlists carry the songs without the DJs, because Apple never shares audio that isn't in its own catalogue.</p></div>
+    <div><h2>Fresh every month</h2><p>Each station gets new songs and new DJ breaks at the start of every month. The links on this page stay the same, so bookmark it and come back.</p></div>
+    <div><h2>About the voices</h2><p>The hosts are fictional characters. Their voices are synthetic, cloned from people who consented to share their speech (Meta Expresso and EARS datasets, CC BY-NC 4.0). Non-commercial, not monetized.</p></div>
+  </section>
+</div>
+
+<script>
+const S = [
+ {n:"Mosh Pit 66.6",f:"66.6",g:"Metal · punk · thrash",c:"#ff3b3b",h:"Grizz & Twitch",yt:"PLalERfHaKaX4",v:"b3-QqGVt-tM",ap:"pl.u-Ymb0xjySPN9bpDy",b:0,a:["Black Sabbath","Motörhead","Judas Priest","Iron Maiden","Metallica","Slayer"]},
+ {n:"Underground 88.3",f:"88.3",g:"Boom bap · underground hip hop",c:"#e0a441",h:"The Professor & Rasheed",yt:"PLD07U0mgEa5Q",v:"ru2IrTY2UG0",ap:"pl.u-ZmbljGpu02oPypD",b:0,a:["Madvillain","Wu-Tang Clan","Mobb Deep","Gang Starr","Mos Def","A Tribe Called Quest"]},
+ {n:"Smoke Room 91.5",f:"91.5",g:"Jazz · soul · quiet storm",c:"#d9b25f",h:"Lou, Nia & Grandma Pearl",yt:"PLdkQg73BwrjI",v:"u_E0UVNtJ9Y",ap:"pl.u-Ymb0p3RUPN9bpDy",b:0,a:["Ella Fitzgerald","Thelonious Monk","Miles Davis","Frank Sinatra","Dizzy Gillespie","Benny Goodman"]},
+ {n:"Dusty Road 93.3",f:"93.3",g:"Country · outlaw · Americana",c:"#d88a4a",h:"Hank & Darlene",yt:"PLEhbH0q6QDqM",v:"vpQlAIbl5ig",ap:"pl.u-ZmblyMGi02oPypD",b:4,a:["Johnny Cash","Merle Haggard","Loretta Lynn","Dolly Parton","Willie Nelson","The Highwaymen"]},
+ {n:"Static 97.1",f:"97.1",g:"Alternative · trip hop · indie",c:"#8fb4ff",h:"Uncle Dez & Marnie",yt:"PLNFTBd4h7RiA",v:"_uofQD-N6UI",ap:"pl.u-Ymb0p50CPN9bpDy",b:0,a:["Radiohead","Gorillaz","Portishead","Massive Attack","Tricky","Thom Yorke"]},
+ {n:"Masala 98.3",f:"98.3",g:"Bollywood · Punjabi · desi pop",c:"#ff8f3d",h:"Priya & Zara",yt:"PLRNVQwdXWKyc",v:"p9eAXm7oBJk",ap:"pl.u-PDb49rpILR9Vmy6",b:0,a:["Lata Mangeshkar","Sukhwinder Singh","Sonu Nigam","Shankar Mahadevan","Alisha Chinai","Vishal-Shekhar"]},
+ {n:"Gravel 99.1",f:"99.1",g:"Classic rock",c:"#ff6a2b",h:"Rusty & Skid",yt:"PLKl3S1hxOc3g",v:"HibBnC6SVk8",ap:"pl.u-ZmbljGjF02oPypD",b:0,a:["Led Zeppelin","Jimi Hendrix","Black Sabbath","The Rolling Stones","AC/DC","Ozzy Osbourne"]},
+ {n:"Glitter 102.5",f:"102.5",g:"Pop · disco · chart",c:"#ff5cc8",h:"Tyler & Brooke",yt:"PLVuM-RGxQx3Y",v:"4NRXx6U8ABQ",ap:"pl.u-PDb46B5tLR9Vmy6",b:0,a:["The Weeknd","Sabrina Carpenter","Dua Lipa","Beyoncé","Michael Jackson","Madonna"]},
+ {n:"Crossfade FM 104.7",f:"104.7",g:"Genre-hopping · every station's guest",c:"#c9cfdb",h:"Velvet & friends",yt:"PLZrUzQ6vfTiY",v:"O_Tzn2_kj3E",ap:"pl.u-vxy6DzBTz3ABG82",b:6,a:["MF DOOM","Pete Rock & C.L. Smooth","Gorillaz","Portishead","Burial","Skepta"]},
+ {n:"Riddim 105.3",f:"105.3",g:"Reggae · dancehall · afrobeats",c:"#ffd23a",h:"Dahlia & Shanice",yt:"PLDZQjCuKXnSQ",v:"nF1D47LnOEU",ap:"pl.u-AkAma7ms2e4LNlA",b:0,a:["Desmond Dekker","Toots","Bob Marley","Sister Nancy","Chaka Demus","Wizkid"]},
+ {n:"Fuego 106.9",f:"106.9",g:"Salsa · Latin · reggaeton",c:"#ffb21e",h:"El Chamaco, La Reina & Tío Rafa",yt:"PLfRBzTWRHbx0",v:"7Ho86ggAVrY",ap:"pl.u-PDb46kDtLR9Vmy6",b:0,a:["Celia Cruz","Héctor Lavoe","Willie Colón","Buena Vista Social Club","Santana","Ritchie Valens"]},
+ {n:"Warehouse 124",f:"124",g:"House · techno · club",c:"#29d3ff",h:"Klaus, Oksana & Dmitri",yt:"PLJqnfHq2rNoc",v:"ottFhv0zD_8",ap:"pl.u-ZmbljYoT02oPypD",b:0,a:["Frankie Knuckles","Robin S.","CeCe Peniston","Crystal Waters","Alison Limerick","Ultra Naté"]},
+ {n:"Pirate 140",f:"140",g:"Grime · UK garage · drill",c:"#2ee8a0",h:"Honey, Uncle Nige & Lil Tremz",yt:"PLIO8kFgQtTWU",v:"_xQKWnvtg6c",ap:"pl.u-PDb46BgCLR9Vmy6",b:0,a:["Skepta","Wiley","Dizzee Rascal","Lethal Bizzle","Artful Dodger","Sweet Female Attitude"]},
+ {n:"Trap Lords 808",f:"808",g:"Trap · hip hop",c:"#b04cff",h:"Big Tuesday, Kiki & Deacon",yt:"PLd2VWAleNOak",v:"pDddlvCfTiw",ap:"pl.u-PDb461ETLR9Vmy6",b:0,a:["Central Cee","Young Thug","Future","Travis Scott","Playboi Carti","Young Nudy"]}
+];
+const PLAYER = "https://sehanthomas888.github.io/fourteen-stations/";  // Apple Music + DJs web player (apple-player/)
+const PLAYER_FULL = false;  // true once the Apple Music developer token is live (full songs for signed-in listeners)
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const esc = s => s.replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+// Dial: place 66.6–140 on a 60–145 scale; 808 sits at the far right end.
+const dial = document.getElementById("dial");
+S.forEach((s, i) => {
+  const x = s.f === "808" ? 97 : Math.min(95, ((parseFloat(s.f) - 60) / 85) * 100);
+  const a = document.createElement("a");
+  a.className = "mark" + (i % 2 ? " low" : ""); a.href = "#" + slug(s.n); a.style.left = x + "%"; a.style.setProperty("--c", s.c);
+  a.textContent = s.f + " " + s.n.replace(/\s[\d.]+$/, "");
+  dial.appendChild(a);
+});
+const grid = document.getElementById("grid");
+grid.innerHTML = S.map(s => {
+  const live = s.b >= 6;
+  const status = live ? `<span class="status live">DJs on air</span>` : `<span class="status">DJs arriving · ${s.b}/6</span>`;
+  const play = `https://www.youtube.com/watch?v=${s.v}&list=${s.yt}`;
+  const apple = `https://music.apple.com/in/playlist/${slug(s.n)}/${s.ap}`;
+  return `<article class="plate" id="${slug(s.n)}" style="--c:${s.c}">
+    <img class="art" src="../covers/${slug(s.n)}.jpg" alt="${esc(s.n)} cover art" width="640" height="640" loading="lazy">
+    <div class="top"><span class="freq">${s.f}</span>${status}</div>
+    <div><h2 class="name">${esc(s.n.replace(/\s[\d.]+$/, ""))}</h2><div class="genre">${esc(s.g)}</div></div>
+    <p class="hosts">Hosted by <b>${esc(s.h)}</b></p>
+    <p class="rot">On rotation: ${esc(s.a.join(", "))}</p>
+    <div class="btns">
+      <a class="btn primary" href="${play}" target="_blank" rel="noopener">▶ Play on YouTube <small>${live ? "with DJs" : "songs now, DJs soon"}</small></a>
+      <a class="btn" href="https://music.youtube.com/playlist?list=${s.yt}" target="_blank" rel="noopener">YouTube Music <small>${live ? "with DJs" : "songs now"}</small></a>
+      <a class="btn" href="${PLAYER}#${slug(s.n)}" target="_blank" rel="noopener">Apple Music + DJs <small>${PLAYER_FULL ? "with DJs" : "DJs + song previews"}</small></a>
+      <a class="btn" href="${apple}" target="_blank" rel="noopener">Apple Music playlist <small>songs only</small></a>
+    </div>
+  </article>`;
+}).join("");
+</script>
+
+</body>
+</html>

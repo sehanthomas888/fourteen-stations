@@ -34,6 +34,7 @@ header { display: grid; gap: 10px; margin-bottom: 22px; }
 .eyebrow { font: 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--glow); }
 h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size: clamp(44px, 9vw, 88px); line-height: .92; margin: 0; text-transform: uppercase; letter-spacing: -.01em; }
 .lede { max-width: 62ch; color: var(--muted); margin: 0; font-size: 16px; }
+.lede a { color: var(--ink); }
 
 #account { margin: 4px 0 26px; }
 .mode { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 14px; }
@@ -110,7 +111,7 @@ h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size
   <header>
     <div class="eyebrow" id="edition">Refreshed monthly</div>
     <h1>Fourteen Stations</h1>
-    <p class="lede">Apple Music edition. Pick a station: the songs stream from Apple Music, and the DJs talk between them, naming what you just heard and what's coming next.</p>
+    <p class="lede">Apple Music edition. Pick a station: the songs stream from Apple Music, and the DJs talk between them, naming what you just heard and what's coming next. Prefer YouTube? <a href="all/">All stations on every app</a>.</p>
   </header>
   <div id="account" aria-live="polite"></div>
   <main class="grid" id="grid" aria-label="Stations"></main>
