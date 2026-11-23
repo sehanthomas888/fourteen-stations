@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fourteen Stations · Apple Music</title>
+<meta name="description" content="Fourteen radio stations: songs from Apple Music with DJ breaks between them. Refreshed monthly.">
+<link rel="icon" href="covers/crossfade-fm-104-7.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&family=Share+Tech+Mono&display=swap">
+<style>
+/* A grid of station covers; tapping one tunes in. A player bar sits at the bottom with an ON AIR lamp in the station's colour during DJ breaks. */
+:root {
+  --bg: #e9ecf1; --panel: #f7f8fa; --ink: #141821; --muted: #5a6172; --line: #cfd4de; --glow: #b4570f; --c: #b4570f;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Share Tech Mono", ui-monospace, "Consolas", monospace;
+  --bar: 84px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1118; --panel: #141a24; --ink: #e8ebf1; --muted: #98a1b3; --line: #262f3d; --glow: #ffb25c; color-scheme: dark;
+} }
+:root[data-theme="dark"] { --bg: #0d1118; --panel: #141a24; --ink: #e8ebf1; --muted: #98a1b3; --line: #262f3d; --glow: #ffb25c; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); }
+body.has-player { padding-bottom: calc(var(--bar) + env(safe-area-inset-bottom, 0px) + 16px); }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 36px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); }
+
+header { display: grid; gap: 10px; margin-bottom: 22px; }
+.eyebrow { font: 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--glow); }
+h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size: clamp(44px, 9vw, 88px); line-height: .92; margin: 0; text-transform: uppercase; letter-spacing: -.01em; }
+.lede { max-width: 62ch; color: var(--muted); margin: 0; font-size: 16px; }
+
+#account { margin: 4px 0 26px; }
+.mode { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 14px; }
+.mode b { color: var(--ink); font-weight: 600; }
+.mode .lamp { flex: none; }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: transparent; border-radius: 8px; padding: 10px 14px; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; color: var(--ink); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.link { background: none; border: 0; padding: 0; color: var(--ink); text-decoration: underline; cursor: pointer; font-size: 14px; }
+.btn:focus-visible, .link:focus-visible, .tile:focus-visible, .ctl:focus-visible, .row:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.lamp { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.lamp.live { background: var(--c); box-shadow: 0 0 10px var(--c); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 14px; }
+.tile { --c: #888; display: grid; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); text-align: left; cursor: pointer; position: relative; min-width: 0; }
+.tile img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: var(--line); }
+.tile .meta { display: grid; gap: 2px; padding: 10px 12px 12px; border-top: 3px solid var(--c); min-width: 0; }
+.tile .freq { font: 22px/1 var(--mono); color: var(--c); font-variant-numeric: tabular-nums; }
+.tile .nm { font-family: var(--display); font-stretch: 85%; font-weight: 800; font-size: 17px; line-height: 1.15; text-transform: uppercase; overflow-wrap: anywhere; }
+.tile .hs { font-size: 12px; color: var(--muted); line-height: 1.35; }
+.tile:hover img { filter: brightness(1.06); }
+.tile.on { outline: 2px solid var(--c); outline-offset: 2px; }
+@media (max-width: 520px) { .grid { grid-template-columns: 1fr 1fr; gap: 10px; } .tile .meta { padding: 8px 10px 10px; } .tile .freq { font-size: 18px; } .tile .nm { font-size: 15px; } }
+.tile.on::after { content: "ON AIR"; position: absolute; top: 10px; left: 10px; font: 11px/1 var(--mono); letter-spacing: .1em; padding: 6px 8px; border-radius: 999px; background: #0b0d12d9; color: #fff; border: 1px solid var(--c); }
+
+.notes { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 22px; }
+.notes h2 { font: 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin: 0 0 8px; }
+.notes p { margin: 0; max-width: 60ch; }
+.notes a { color: var(--ink); }
+
+/* Player bar */
+#player { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: color-mix(in srgb, var(--panel) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
+#player[hidden] { display: none; }
+.prog { height: 3px; background: var(--line); }
+.prog i { display: block; height: 100%; width: 0; background: var(--c); transition: width .5s linear; }
+.bar { max-width: 1120px; margin: 0 auto; height: var(--bar); display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 0 max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px)); }
+.bar img { width: 56px; height: 56px; border-radius: 6px; object-fit: cover; background: var(--line); }
+.now { min-width: 0; display: grid; gap: 1px; }
+.kick { display: flex; align-items: center; gap: 7px; font: 11px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kick.live { color: var(--ink); }
+.ttl { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ctls { display: flex; align-items: center; gap: 2px; }
+.ctl { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; border-radius: 50%; cursor: pointer; color: var(--ink); }
+.ctl:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.ctl svg { width: 22px; height: 22px; fill: currentColor; }
+.ctl.big { width: 50px; height: 50px; background: var(--ink); color: var(--bg); }
+.ctl.big:hover { background: var(--ink); filter: brightness(1.15); }
+.ctl.big.nudge { box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 55%, transparent); }
+@media (max-width: 480px) { #back { display: none; } .bar { gap: 10px; } }
+
+/* Run order sheet */
+#sheet { position: fixed; left: 0; right: 0; bottom: calc(var(--bar) + 3px + env(safe-area-inset-bottom, 0px)); z-index: 9; display: flex; justify-content: center; padding: 0 12px; }
+#sheet[hidden] { display: none; }
+.sheet-in { width: min(640px, 100%); max-height: min(62vh, 560px); overflow: auto; background: var(--panel); border: 1px solid var(--line); border-bottom: 0; border-radius: 12px 12px 0 0; padding: 8px 0; box-shadow: 0 -12px 40px #0004; }
+.sheet-h { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 16px 10px; font: 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.row { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; padding: 9px 16px; border: 0; background: none; text-align: left; cursor: pointer; }
+.row:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.row .n { font: 12px/1 var(--mono); color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.row .t { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .t small { color: var(--muted); font-size: 13px; }
+.row.dj .t { font-family: var(--mono); letter-spacing: .04em; text-transform: uppercase; font-size: 13px; color: var(--c); }
+.row[aria-current="true"] { background: color-mix(in srgb, var(--c) 16%, transparent); }
+.row a { font-size: 12px; color: var(--muted); }
+
+#toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--bar) + 20px + env(safe-area-inset-bottom, 0px)); z-index: 11; background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 8px; font-size: 14px; max-width: calc(100% - 32px); }
+#toast[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) { .lamp.live { animation: pulse 2.4s ease-in-out infinite; } @keyframes pulse { 50% { opacity: .35; } } }
+</style>
+<script src="token.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="edition">Refreshed monthly</div>
+    <h1>Fourteen Stations</h1>
+    <p class="lede">Apple Music edition. Pick a station: the songs stream from Apple Music, and the DJs talk between them, naming what you just heard and what's coming next.</p>
+  </header>
+  <div id="account" aria-live="polite"></div>
+  <main class="grid" id="grid" aria-label="Stations"></main>
+  <section class="notes">
+    <div><h2>How it works</h2><p>The DJ breaks play from this page. The songs come from Apple Music through your own account, so you need an Apple Music subscription for full songs. Nothing about you is stored here.</p></div>
+    <div><h2>Fresh every month</h2><p>Every station gets new songs and new DJ breaks at the start of each month. The link stays the same.</p></div>
+    <div><h2>About the voices</h2><p>The hosts are fictional. Their voices are synthetic, cloned from people who consented to share their speech (Meta Expresso and EARS datasets, CC BY-NC 4.0). Non-commercial, not monetized, not affiliated with Apple.</p></div>
+  </section>
+</div>
+
+<div id="sheet" hidden><div class="sheet-in" role="dialog" aria-label="Run order"><div class="sheet-h"><span id="sheet-title">Run order</span><span>Tap to jump</span></div><div id="rows"></div></div></div>
+
+<div id="player" hidden>
+  <div class="prog"><i id="prog"></i></div>
+  <div class="bar">
+    <img id="p-cover" alt="">
+    <div class="now">
+      <div class="kick" id="p-kick"></div>
+      <div class="ttl" id="p-title"></div>
+      <div class="sub" id="p-sub"></div>
+    </div>
+    <div class="ctls">
+      <button class="ctl" id="back" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM9.5 12 19 5v14z"/></svg></button>
+      <button class="ctl big" id="pp" aria-label="Play"><svg viewBox="0 0 24 24"><path id="pp-icon" d="M8 5v14l11-7z"/></svg></button>
+      <button class="ctl" id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM5 5l9.5 7L5 19z"/></svg></button>
+      <button class="ctl" id="list" aria-label="Run order" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/></svg></button>
+    </div>
+  </div>
+</div>
+<div id="toast" role="status" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
