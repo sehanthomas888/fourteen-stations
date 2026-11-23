@@ -1,4 +1,4 @@
-# Fourteen Stations: Apple Music + DJs
+# Radio Rosetta: Apple Music + DJs
 
 Fourteen fan-made radio stations. The songs stream from Apple Music through the listener's own account; the DJ breaks between them play from this site. Refreshed monthly.
 

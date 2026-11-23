@@ -1,4 +1,4 @@
-// Fourteen Stations: Apple Music + DJs.
+// Radio Rosetta: Apple Music + DJs.
 // DJ breaks are this site's own audio files. Songs play from Apple Music (MusicKit on the web) once the
 // listener signs in; until then (or without a developer token) they play as 30-second Apple previews.
 const $ = s => document.querySelector(s);
@@ -34,7 +34,7 @@ async function init() {
 function loadMusicKit() {
   document.addEventListener("musickitloaded", async () => {
     try {
-      music = await MusicKit.configure({ developerToken: window.FS_TOKEN, app: { name: "Fourteen Stations", build: "2026.11" } });
+      music = await MusicKit.configure({ developerToken: window.FS_TOKEN, app: { name: "Radio Rosetta", build: "2026.11" } });
       music.addEventListener("playbackStateDidChange", onMkState);
       music.addEventListener("authorizationStatusDidChange", renderAccount);
     } catch (e) { console.warn("MusicKit", e); music = null; mkFailed = true; }
