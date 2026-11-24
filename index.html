@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Radio Rosetta · Apple Music</title>
 <meta name="description" content="Radio Rosetta: fourteen radio stations, songs from Apple Music with DJ breaks between them. Refreshed monthly.">
-<link rel="icon" href="covers/logo.jpg">
-<link rel="apple-touch-icon" href="covers/logo.jpg">
+<link rel="icon" href="covers/mark.jpg">
+<link rel="apple-touch-icon" href="covers/mark.jpg">
 <meta property="og:image" content="https://radio-rosetta.vercel.app/player/covers/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,9 @@ button { font: inherit; color: inherit; }
 header { display: grid; gap: 10px; margin-bottom: 22px; }
 .brand { display: flex; align-items: center; gap: clamp(12px, 2.4vw, 22px); }
 .brand img { width: clamp(64px, 12vw, 116px); height: auto; aspect-ratio: 1; border-radius: 18px; flex: none; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+.maker { display: flex; align-items: center; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.maker img { width: 40px; height: 40px; border-radius: 8px; flex: none; }
+.maker strong { color: var(--ink); font-weight: 600; }
 .eyebrow { font: 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--glow); }
 h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size: clamp(44px, 9vw, 88px); line-height: .92; margin: 0; text-transform: uppercase; letter-spacing: -.01em; }
 .lede { max-width: 62ch; color: var(--muted); margin: 0; font-size: 16px; }
@@ -114,7 +117,7 @@ h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size
 <div class="wrap">
   <header>
     <div class="eyebrow" id="edition">Refreshed monthly</div>
-    <div class="brand"><img src="covers/logo.jpg" alt="Radio Rosetta logo: a carved Rosetta stone" width="116" height="116"><h1>Radio Rosetta</h1></div>
+    <div class="brand"><img src="covers/mark.jpg" alt="Radio Rosetta logo: a carved stone radio dial" width="116" height="116"><h1>Radio Rosetta</h1></div>
     <p class="lede">Apple Music edition. Pick a station: the songs stream from Apple Music, and the DJs talk between them, naming what you just heard and what's coming next. Prefer Spotify or YouTube? <a href="all/">All stations on every app</a>.</p>
   </header>
   <div id="account" aria-live="polite"></div>
@@ -124,6 +127,7 @@ h1 { font-family: var(--display); font-stretch: 70%; font-weight: 900; font-size
     <div><h2>Fresh every month</h2><p>Every station gets new songs and new DJ breaks at the start of each month. The link stays the same.</p></div>
     <div><h2>About the voices</h2><p>The hosts are fictional. Their voices are synthetic, cloned from people who consented to share their speech (Meta Expresso and EARS datasets, CC BY-NC 4.0; Masala 98.3's hosts: AI4Bharat IndicVoices-R, CC BY 4.0; Riddim, Fuego, Pirate 140 and Warehouse 124: the Edinburgh International Accents of English Corpus, CC BY-SA 4.0). Non-commercial, not monetized, not affiliated with Apple.</p></div>
   </section>
+  <footer class="maker"><img src="covers/parent.jpg" alt="Rosetta Stone Laboratories logo" width="40" height="40"><span>A <strong>Rosetta Stone Laboratories</strong> production</span></footer>
 </div>
 
 <div id="sheet" hidden><div class="sheet-in" role="dialog" aria-label="Run order"><div class="sheet-h"><span id="sheet-title">Run order</span><span>Tap to jump</span></div><div id="rows"></div></div></div>
