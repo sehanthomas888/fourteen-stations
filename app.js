@@ -153,11 +153,11 @@ function back() {
 function describe(it) {
   const st = P.st, nextSong = st.items.slice(P.i + 1).find(x => x.t === "song");
   if (it.t === "dj") {
-    return { live: true, kick: `On air · DJ break ${it.n} of 6`, title: it.title,
+    return { live: true, kick: `On air · DJ break ${it.n} of ${st.items.filter(x => x.t === "dj").length}${nextSong ? "" : " · sign-off"}`, title: it.title,
       sub: `${st.h}${nextSong ? ` · up next: ${nextSong.title} by ${nextSong.artist}` : ""}` };
   }
   const n = st.items.slice(0, P.i + 1).filter(x => x.t === "song").length;
-  return { live: false, kick: `${short(st.n)} · song ${n} of 24${usesMk(it) ? "" : " · 30-sec preview"}`, title: it.title, sub: it.artist };
+  return { live: false, kick: `${short(st.n)} · song ${n} of ${st.items.filter(x => x.t === "song").length}${usesMk(it) ? "" : " · 30-sec preview"}`, title: it.title, sub: it.artist };
 }
 
 function paint() {
